@@ -1,0 +1,38 @@
+// Active nav-link styling
+.navbar .nav-link.active {
+  color: #5E3BEE !important;       // Brand color
+  text-decoration: none !important;
+  border-bottom: none !important;
+  font-weight: 600;                // Emphasized text
+}
+
+// Navbar brand text styling
+.brand-text {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #282938;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  &:hover {
+    color: #0d6efd;               // Optional hover color
+    text-decoration: none;
+  }
+}
+
+.btn-border-only {
+  background-color: transparent;
+  border: 1px solid var(--Primary, #5E3BEE);
+  color: var(--Primary, #5E3BEE);
+  font-family: 'Roboto', sans-serif;
+  font-size: 18.333px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 150%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--Primary, #5E3BEE);
+    color: #fff;
+  }
+}
