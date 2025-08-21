@@ -56,6 +56,68 @@ contactForm.addEventListener("submit", function (event) {
 //     });
 // });
 
+var emailField = document.getElementById("email");
+var subjectEmail = document.getElementById("subject");
+let errorMessage = document.getElementById("emailerror");
+
+function validateEmail(){
+    if(!emailField.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)){
+        errorMessage.style.display = "block";
+        return false;
+    }else{
+        errorMessage.style.display = "none";
+        return true;
+    }
+}
+
+function validateName(){
+    var nameEmail = document.getElementById("fname").value;
+    if(/^[A-Za-z\s]+$/.test(nameEmail) && (nameEmail.match(/[A-Za-z]/g) || []).length >= 3){
+        nameChecker = true;
+        errorMessage.style.display = "none";
+        return true;
+    }else{
+        nameChecker = false;
+        errorMessage.innerText = "The Name Must Be Contain 3 Characters";
+        errorMessage.style.display = "block";
+        return false;
+    }
+    
+}
+
+function validateMessage() {
+    var message = document.getElementById("subject").value.trim();
+
+    if (message.length >= 2) {
+        messageChecker = true;
+        errorMessage.style.display = "none"
+        return true;
+    } else {
+        messageChecker = false;
+        errorMessage.innerText = "Write any message";
+        errorMessage.style.display = "block"
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   let contactForm = document.getElementById("contactForm");
   contactForm.addEventListener("submit", sendEmail)
