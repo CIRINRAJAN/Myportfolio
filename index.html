@@ -12,6 +12,19 @@
       rel="stylesheet"
     />
     <title>Cirin Rajan</title>
+
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function(){
+          emailjs.init({
+            publicKey: "SqZunUT-EJcMIPYGN",
+          });
+      })();
+    </script>
+
+
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -301,9 +314,12 @@
         </div>
       </section>
 
+
+
+
       <!-- Contact Form -->
       <section id="contact" class="contact-section py-5">
-  <form  action="https://formsubmit.co/cirinrajan@gmail.com" method="post" id="contactForm" class="needs-validation" novalidate>
+  <form   method="post" id="contactForm" class="needs-validation" novalidate>
     <!-- Optional: FormSubmit helpers -->
     <input type="hidden" name="_subject" value="New message from portfolio site">
     <input type="hidden" name="_template" value="table">
@@ -320,29 +336,19 @@
         </div>
       </div>
 
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="firstName" class="form-label">First Name</label>
+      <div class="mb-3">
+
+          <label for="firstName" class="form-label">Your Name</label>
           <input
             type="text"
             class="form-control"
-            id="firstName"
-            name="firstName"
+            id="yourName"
+            name="name"
             required
           />
-          <div class="invalid-feedback">First name is required.</div>
-        </div>
-        <div class="col-md-6">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input
-            type="text"
-            class="form-control"
-            id="lastName"
-            name="lastName"
-            required
-          />
-          <div class="invalid-feedback">Last name is required.</div>
-        </div>
+          <div class="invalid-feedback">Your name is required.</div>
+
+        
       </div>
 
       <div class="mb-3">
@@ -380,13 +386,16 @@
       </div>
 
       <div class="d-flex justify-content-center mt-3">
-        <button type="submit" class="btn btn-primary px-4 py-2 mb-4">
+        <button type="submit" class="btn btn-primary px-4 py-2 mb-4" >
           Submit
         </button>
       </div>
     </div>
   </form>
 </section>
+
+
+
 
 <!-- Success Modal (unchanged) -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
