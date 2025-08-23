@@ -1,131 +1,80 @@
-/* const contactForm = document.getElementById("contactForm");
-
-contactForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  if (!contactForm.checkValidity()) {
-    contactForm.classList.add("was-validated");
-    return;
-  }
-
-  // Show the modal if form is valid
-  const successModal = new bootstrap.Modal(document.getElementById("successModal"));
-  successModal.show();
-
-  contactForm.reset();
-  contactForm.classList.remove("was-validated");
-}); */
-
-// const contactForm = document.getElementById("contactForm");
-
-// contactForm.addEventListener("submit", function (event) {
-//   event.preventDefault();
-
-//   if (!contactForm.checkValidity()) {
-//     contactForm.classList.add("was-validated");
-//     return;
-//   }
-//   // Prepare form data
-//   const formData = new FormData(contactForm);
-//   console.log("Form data prepared:", formData);
-
-
-  // Send email using FormSubmit
-//   fetch("https://formsubmit.co/caa32a81d7488c64b6648758555a4377", {
-//     method: "POST",
-//     headers: {
-//       Accept: "application/json",
-//     },
-//     body: formData,
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         // Show success modal if email sent
-//         const successModal = new bootstrap.Modal(
-//           document.getElementById("successModal")
-//         );
-//         successModal.show();
-//         contactForm.reset();
-//         contactForm.classList.remove("was-validated");
-//       } else {
-//         alert("❌ Error: Unable to send message. Please try again.");
-//       }
-//     })
-//     .catch(() => {
-//       alert("❌ Network error. Please check your connection and try again.");
-//     });
-// });
-
-var emailField = document.getElementById("email");
-var subjectEmail = document.getElementById("subject");
-let errorMessage = document.getElementById("emailerror");
 
 function validateEmail(){
-    if(!emailField.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)){
-        errorMessage.style.display = "block";
+    var emailField = document.getElementById("email").value;
+    let emailError = document.getElementById("emailerror");
+    if(!emailField.match(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)){
+        emailError.style.display = "block";
         return false;
     }else{
-        errorMessage.style.display = "none";
+        emailError.style.display = "none";
         return true;
     }
 }
 
 function validateName(){
-    var nameEmail = document.getElementById("fname").value;
+    var nameEmail = document.getElementById("yourName").value;
+    let nameError = document.getElementById("nameerror");
     if(/^[A-Za-z\s]+$/.test(nameEmail) && (nameEmail.match(/[A-Za-z]/g) || []).length >= 3){
-        nameChecker = true;
-        errorMessage.style.display = "none";
+        nameError.style.display = "none";
         return true;
     }else{
-        nameChecker = false;
-        errorMessage.innerText = "The Name Must Be Contain 3 Characters";
-        errorMessage.style.display = "block";
+        nameError.style.display = "block";
         return false;
     }
     
 }
 
 function validateMessage() {
-    var message = document.getElementById("subject").value.trim();
+    var message = document.getElementById("message").value.trim();
+    var messageError = document.getElementById("messageerror");
 
-    if (message.length >= 2) {
-        messageChecker = true;
-        errorMessage.style.display = "none"
+
+    var words = message.split(/\s+/).filter(word => word.length > 0);
+
+
+    var hasThreeWords = words.length >= 3;
+    var allNumbers = /^[0-9\s]+$/.test(message);
+
+    if (hasThreeWords && !allNumbers) {
+        messageError.style.display = "none";
         return true;
     } else {
-        messageChecker = false;
-        errorMessage.innerText = "Write any message";
-        errorMessage.style.display = "block"
+        messageError.style.display = "block";
         return false;
     }
 }
 
+function validatePhone(){
+    var phoneField = document.getElementById("phone");
+    var phoneError = document.getElementById("phoneerror");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if(!phoneField.value.match(/^\+91[0-9]{10}$/)){
+        phoneError.style.display = "block";
+        return false;
+    }else{
+        phoneError.style.display = "none";
+        return true;
+    }
+}
 
 
   let contactForm = document.getElementById("contactForm");
-  contactForm.addEventListener("submit", sendEmail)
+  contactForm.addEventListener("submit", formChecker)
+function formChecker(e){
 
+    e.preventDefault();
 
-  function sendEmail(e) {
-    e.preventDefault(); // Prevent form submission default behavior
+    validateEmail();
+    validateName();
+    validateMessage();
+    validatePhone();
 
+    if(validateEmail() && validateName() && validateMessage() && validatePhone()){
+        sendEmail();
+    }
+}
+
+  function sendEmail() {
     let params = {
       name: document.getElementById("yourName").value,
       email: document.getElementById("email").value,

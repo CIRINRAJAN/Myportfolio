@@ -344,9 +344,10 @@
             class="form-control"
             id="yourName"
             name="name"
+            onkeyup="validateName()"
             required
           />
-          <div class="invalid-feedback">Your name is required.</div>
+          <div class="invalid-feedback" id="nameerror">Your name is required.</div>
 
         
       </div>
@@ -365,11 +366,11 @@
           class="form-control"
           id="phone"
           name="phone"
-          pattern="^(\+91)?[0-9]{10}$"
+          onkeyup="validatePhone()"
           required
         />
-        <div class="invalid-feedback">
-          Enter a valid phone number in the format +911234567890.
+        <div class="invalid-feedback" id="phoneerror" >
+          Enter a valid phone number in the format +913124567890.
         </div>
       </div>
 
@@ -380,9 +381,10 @@
           id="message"
           name="message"
           rows="4"
+          onkeyup="validateMessage()"
           required
         ></textarea>
-        <div class="invalid-feedback">Message is required.</div>
+        <div class="invalid-feedback" id="messageerror">Message is required.</div>
       </div>
 
       <div class="d-flex justify-content-center mt-3">
