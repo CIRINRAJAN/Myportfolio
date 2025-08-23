@@ -130,6 +130,7 @@ function validateMessage() {
       name: document.getElementById("yourName").value,
       email: document.getElementById("email").value,
       message: document.getElementById("message").value,
+      time: document.getElementById("phone").value,
     };
 
     emailjs
